@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "5d98dfd4-1ce7-4620-9f88-54f252ebad04",
+		"name": "VIC-Scalapay-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8802401"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"vic.weiyu@gmail.com\",\n    \"password\": \"Abc@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+									"",
+									"    const resp = pm.response.json();",
+									"",
+									"    pm.collectionVariables.set(\"jwt\", resp.data.token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"vic.weiyu@gmail.com\",\n    \"password\": \"Abc@1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Abc@123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/changePassword",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "submitOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"consumer\": {\n        \"phoneNumber\": \"\",\n        \"givenNames\": \"Yu\",\n        \"surname\": \"Wei\",\n        \"email\": \"vic.weiyu@gmail.com\"\n    },\n    \"shipping\": {\n        \"phoneNumber\": \"\",\n        \"countryCode\": \"AU\",\n        \"name\": \"Victor\",\n        \"postcode\": \"5000\",\n        \"suburb\": \"\",\n        \"line1\": \"123 Abc AVE\"\n    },\n    \"items\": [\n        {\n            \"gtin\": \"UPC\",\n            \"quantity\": \"1\",\n            \"price\": {\n                \"amount\": \"1000\",\n                \"currency\": \"EUR\"\n            },\n            \"name\": \"Macbook\",\n            \"category\": \"Tech\",\n            \"subcategory\": [\n                \"\"\n            ],\n            \"sku\": \"123456\",\n            \"brand\": \"Apple\"\n        }\n    ],\n    \"discounts\": [\n        {\n            \"amount\": {\n                \"amount\": \"10\",\n                \"currency\": \"EUR\"\n            },\n            \"displayName\": \"\"\n        }\n    ],\n    \"shippingAmount\": {\n        \"amount\": \"10\",\n        \"currency\": \"EUR\"\n    },\n    \"taxAmount\": {\n        \"amount\": \"10\",\n        \"currency\": \"EUR\"\n    },\n    \"product\": \"pay-in-3\",\n    \"frequency\": {\n        \"number\": 1,\n        \"frequencyType\": \"monthly\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/orders/submitOrder",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"orders",
+								"submitOrder"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
