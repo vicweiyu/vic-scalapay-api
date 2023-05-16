@@ -1,0 +1,81 @@
+{
+  "name": "vic-scalapay-api",
+  "version": "1.0.0",
+  "description": "vic-scalapay-api",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "rm -rf dist/* && tsc",
+    "type-check": "tsc --noEmit --watch",
+    "prettier": "prettier --write \"src/**/*.{js,ts,json,md}\"",
+    "eslint": "eslint \"src/**/*.{js,ts,json,md}\" --max-warnings 0",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,json,md}": [
+      "prettier --write",
+      "eslint --max-warnings 0"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicweiyu/vic-scalapay-api"
+  },
+  "bugs": {
+    "url": "https://github.com/vicweiyu/vic-scalapay-api/issues"
+  },
+  "keywords": [
+    "API",
+    "NodeJS",
+    "Koa"
+  ],
+  "author": "vicweiyu",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "koa": "^2.14.2",
+    "koa-body": "^6.0.1",
+    "koa-compress": "^5.1.1",
+    "koa-helmet": "^7.0.2",
+    "koa-logger": "^3.2.1",
+    "mysql2": "^3.3.1",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/koa": "^2.13.6",
+    "@types/koa__cors": "^4.0.0",
+    "@types/koa__router": "^12.0.0",
+    "@types/koa-compress": "^4.0.3",
+    "@types/koa-logger": "^3.1.2",
+    "@types/node": "^20.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.40.0",
+    "eslint-config-alloy": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/test/**",
+      "**/docs/**"
+    ],
+    "delay": 2000
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
