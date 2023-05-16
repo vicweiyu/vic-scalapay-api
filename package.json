@@ -10,7 +10,8 @@
     "prettier": "prettier --write \"src/**/*.{js,ts,json,md}\"",
     "eslint": "eslint \"src/**/*.{js,ts,json,md}\" --max-warnings 0",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "setup-db": "ts-node src/model/setup.ts"
   },
   "lint-staged": {
     "src/**/*.{js,ts,json,md}": [
